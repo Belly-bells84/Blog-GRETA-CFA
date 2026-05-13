@@ -20,7 +20,7 @@ $database = connexion();
 // 3. Récupérer
     $post = $stmt->fetch(PDO::FETCH_ASSOC);
 
-$request2 = $database ->prepare("SELECT auteur, date_commentaires, commentaires FROM commentaires WHERE id_billet = :id ORDER BY date_commentaires ASC");
+$request2 = $database ->prepare("SELECT auteur, date_commentaires, commentaires, id_user FROM commentaires WHERE id_billet = :id ORDER BY date_commentaires ASC");
 $request2->execute([':id' => $id]);
 $comments = $request2->fetchAll(PDO::FETCH_ASSOC);
 ?>

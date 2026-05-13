@@ -30,7 +30,7 @@ function verifPassword($mdpU, $mdpConfirm){
 } 
 
 function verifMail($mailU){
-    if (!preg_match('/^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%]).{8,}$/', $mailU)){
+    if (!preg_match('/^(?=.*[a-z])(?=.*[0-9])(?=.*[@]).{8,}$/', $mailU)){
          header("Location: register.php?erreur=1");
         exit;
     }
