@@ -1,6 +1,5 @@
 <?php
 require_once 'repositoryFunction.php';
-
 //A) Vérifier les données POST existent avant de les utiliser =
 if (isset($_POST['id_billet'])) {
 } else {

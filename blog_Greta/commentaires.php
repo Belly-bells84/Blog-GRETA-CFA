@@ -1,5 +1,6 @@
 <?php
 require_once 'repositoryFunction.php';
+require_once 'addCommentaires.php';
 
 // on récupère l'id = ISSET => Que le paramètre existe dans l'URL / is_numeric => Que c'est bien un nombre entier
 if (isset($_GET['billet']) && is_numeric($_GET['billet'])) {  //Retour = TRUE OU FALSE
@@ -10,9 +11,9 @@ if (isset($_GET['billet']) && is_numeric($_GET['billet'])) {  //Retour = TRUE OU
 }
 
 // 1. Préparer => QUERY = DANGER
-    $stmt = $database->prepare("SELECT titre, contenu, date_creation FROM billets WHERE id_billet = :id");
+    $stmt = $database->prepare("SELECT titre, contenu, date_creation FROM billets WHERE id_billet = :id"); //Paramétres nommées
 // 2. Exécuter avec la valeur
-    $stmt->execute([':id' => $id] );
+    $stmt->execute([':id' => $id] ); //Paramétres nommés : clé => valeur; 
 // 3. Récupérer
     $post = $stmt->fetch(PDO::FETCH_ASSOC);
 
