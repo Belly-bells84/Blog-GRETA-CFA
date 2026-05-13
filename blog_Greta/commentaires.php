@@ -1,6 +1,10 @@
 <?php
+session_start(); //Premier ligne obligatoire
+if (!isset($_SESSION['id_user'])) {
+    header("Location: login.php");
+    exit;
+}
 require_once 'repositoryFunction.php';
-
 // on récupère l'id = ISSET => Que le paramètre existe dans l'URL / is_numeric => Que c'est bien un nombre entier
 if (isset($_GET['billet']) && is_numeric($_GET['billet'])) {  //Retour = TRUE OU FALSE
    $id = $_GET['billet']; // on récupère l'id

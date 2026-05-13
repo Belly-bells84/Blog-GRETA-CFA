@@ -1,2 +1,39 @@
 <?php
 require_once 'repositoryFunction.php';
+
+session_start();
+
+//Vérifier l'état de connexion du user =
+if (isset($_SESSION['id_user'])) {
+    header("Location: index.php");
+    exit;
+}
+// Affichage des messages d'erreur =
+if (isset($_GET['erreur'])) {
+    if ($_GET['erreur'] == 1) {
+        echo "Le mot de passe ou l'identifiant n'est pas bon";
+    } 
+}
+
+?>
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Le Blog du Greta</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+        <main>
+            <form method="POST" action="addLoginUser.php">
+                    <input type="text" name="mail_user" id="user_mail" placeholder="Votre adresse mail">
+                    <input type="password" name="mdp_user" id="user_mdp" placeholder="Votre mot de passe">
+                    <button type="submit" id="benjamin">Connexion</button>
+                    <a href="register.php">Pas encore inscrit ?</a>
+                </form>
+        </main>
+    </body>
+</html>

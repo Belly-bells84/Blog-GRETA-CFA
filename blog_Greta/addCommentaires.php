@@ -1,4 +1,10 @@
 <?php
+session_start(); //Premier ligne obligatoire
+if (!isset($_SESSION['id_user'])) {
+    header("Location: login.php");
+    exit;
+}
+
 require_once 'repositoryFunction.php';
 
 //A) Vérifier les données POST existent avant de les utiliser =

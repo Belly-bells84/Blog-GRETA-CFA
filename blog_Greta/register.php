@@ -2,10 +2,19 @@
 require_once 'repositoryFunction.php';
 
 session_start();
+
+//Vérifier l'état de connexion du user =
 if (isset($_SESSION['id_user'])) {
-    // déjà connecté, on redirige
-    header("Location: index.php?erreur=1");
+    header("Location: index.php");
     exit;
+}
+// Affichage des messages d'erreur =
+if (isset($_GET['erreur'])) {
+    if ($_GET['erreur'] == 1) {
+        echo "Le mot de passe ne respecte pas les règles de sécurité";
+    } elseif ($_GET['erreur'] == 2) {
+        echo "Les mots de passe ne correspondent pas, veuillez le réécrire"; 
+    }
 }
 
 ?>

@@ -1,4 +1,9 @@
 <?php
+session_start(); //Première ligne obligatoire
+if (!isset($_SESSION['id_user'])) {
+    header("Location: login.php");
+    exit;
+}
 ?>
 <!doctype html>
 <html lang="fr">

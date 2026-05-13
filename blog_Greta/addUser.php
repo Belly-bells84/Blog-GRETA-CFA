@@ -13,7 +13,7 @@ if (isset($_POST['name_user'], $_POST['mail_user'], $_POST['mdp_user'])) {
     $database = connexion();
 
     verifPassword($mdpU, $mdpConfirm);
-    registerUser($database, $nameU, $firstnameU, $mailU, $mdpU);
+    registerUser($database, $nameU, $firstnameU, $mailU, $mdpU, $mdpConfirm); //Mettre le même nombre d'arguments que lors de la construction
     
 } else {
     header("Location: register.php");
