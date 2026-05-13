@@ -1,3 +1,15 @@
+<?php
+require_once 'repositoryFunction.php';
+
+session_start();
+if (isset($_SESSION['id_user'])) {
+    // déjà connecté, on redirige
+    header("Location: index.php?erreur=1");
+    exit;
+}
+
+?>
+
 <!doctype html>
 <html lang="fr">
   <head>
