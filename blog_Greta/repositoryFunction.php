@@ -19,20 +19,39 @@ function getBillet($database) {
 }
 
 //Fonction de vérification = RegEX
-function verifPassword(){
+function verifPassword($mdpU, $mdpConfirm){
+     if ($mdpU !== $mdpConfirm) { //Vérifie que les mdp rentré est identique à celui de la confirmation
+        header("Location: register.php?erreur=2");
+        exit;
+    }
+    if (!preg_match('/^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,}$/', $mdpU)){ // Retourne 1 si ça correspond, 0 sinon
+        header("Location: register.php?erreur=1");
+        exit;
+} 
 
+function verifMail($mailU){
+    if (!preg_match('/^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%]).{8,}$/', $mailU)){
+         header("Location: register.php?erreur=1");
+        exit;
+    }
+}
 }
 //fonction d'inscription =
-function registerUser($database, $nameU, $firstnameU, $mailU, $mdpU) {
+function registerUser($database, $nameU, $firstnameU, $mailU, $mdpU, $mdpConfirm) {
+    verifPassword($mdpU, $mdpConfirm); //Appel de la fonction REGEx = verifPassword
+    verifMail($mailU); //Appel de la fonction REGEx = verifMail
     $mdp_securise = password_hash($mdpU, PASSWORD_DEFAULT); //Utilisation de l'algorithme bcrypt => Evite les fuites de données sensibles en cas de vole de la BD
     $stmt = $database->prepare("INSERT INTO users (name_user, firstname_user, mail_user, mdp_user) VALUES (:name_user, :firstname_user, :mail_user, :mdp_user)");
     $stmt->execute([':name_user' => $nameU, ':firstname_user' => $firstnameU, ':mail_user' => $mailU, ':mdp_user' => $mdp_securise]);
+
+    header("Location: login.php");
+    exit;
 }
 //Fonction de connexion =
 function loginUser($database, $mailU, $mdpU) {
     
     $stmt = $database->prepare("SELECT id_user, name_user, firstname_user, mail_user FROM users WHERE mail_user = :mailU");
-    $stmt->execute([':mail_user' => $mailU]);
+    $stmt->execute([':mailU' => $mailU]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if($user && password_verify($mdpU, $user['mdp_user'])){
