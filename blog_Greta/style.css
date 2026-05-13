@@ -1,0 +1,23 @@
+body {
+  background-color: #ffe0b2;
+
+  & .news {
+    background-color: white;
+  }
+
+  &a {
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid blue;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+
+    &:hover {
+      color: greenyellow;
+      background-color: black;
+    }
+  }
+
+  & .comment {
+    background-color: blanchedalmond;
+  }
+}
