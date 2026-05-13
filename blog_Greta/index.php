@@ -21,7 +21,7 @@
             <div class="news">
             <h2><?php echo (htmlspecialchars($billet['titre'])); ?></h2>
             <p><?php echo nl2br(htmlspecialchars($billet['contenu'])); ?></p>
-            <p><?php echo$billet['date_creation']; ?></p>
+            <p><?= $billet['date_creation'] ?></p>
             <a href="commentaires.php?billet=<?php echo $billet['id_billet']; ?>">Commentaires</a>
             </div>
             <?php } //Ouverture & fermeture du PHP pour les accolades

@@ -1,6 +1,5 @@
 <?php
 require_once 'repositoryFunction.php';
-require_once 'addCommentaires.php';
 
 // on récupère l'id = ISSET => Que le paramètre existe dans l'URL / is_numeric => Que c'est bien un nombre entier
 if (isset($_GET['billet']) && is_numeric($_GET['billet'])) {  //Retour = TRUE OU FALSE
@@ -48,7 +47,7 @@ $comments = $request2->fetchAll(PDO::FETCH_ASSOC);
 
 <!--Formulaire d'ajout d'un commentaire-->
                 <form method="POST" action="addCommentaires.php">
-                     <input type="hidden" name="id_billet" value="<?php echo $id?>"> <!--Récupération de l'id PHP pour le mettre en HTML-->
+                     <input type="hidden" name="id_billet" value="<?php echo $id ?>"> <!--Récupération de l'id PHP pour le mettre en HTML-->
                      <label for="auteur">Votre nom :</label>
                     <input type="text" name="author_name" id="auteur">
                     <label for="contenu_commentaire">Votre commentaire :</label>
