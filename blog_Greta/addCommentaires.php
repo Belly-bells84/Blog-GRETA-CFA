@@ -1,5 +1,6 @@
 <?php
 require_once 'repositoryFunction.php';
+
 //A) Vérifier les données POST existent avant de les utiliser =
 if (isset($_POST['id_billet'])) {
 } else {
@@ -18,6 +19,7 @@ if (empty($author) || empty($contenu)) {// Un des champs est vide, on redirige
     header("Location: commentaires.php?billet=$id");
     exit;
 }
+$database = connexion();
 $stmt = $database->prepare("INSERT INTO commentaires (id_billet, auteur, commentaires) VALUES (:id_billet, :auteur, :commentaires)");
 $stmt->execute([':id_billet' => $id, ':auteur' => $author, ':commentaires' => $contenu]);
     header("Location: commentaires.php?billet=$id"); //redirection vers la page

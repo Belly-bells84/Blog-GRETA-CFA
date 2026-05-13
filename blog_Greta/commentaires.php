@@ -9,7 +9,7 @@ if (isset($_GET['billet']) && is_numeric($_GET['billet'])) {  //Retour = TRUE OU
     header('Location: index.php'); // on redirige vers index.php
     exit; //Sans exit = PHP continue d'exécuter le code ce qui cause des failles de sécurités et des comportements inattendus
 }
-
+$database = connexion();
 // 1. Préparer => QUERY = DANGER
     $stmt = $database->prepare("SELECT titre, contenu, date_creation FROM billets WHERE id_billet = :id"); //Paramétres nommées
 // 2. Exécuter avec la valeur
